@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  ubuntu:
+    container_name: "${COMPOSE_PROJECT_NAME}-container" # コンテナ名: プロジェクト名-container
+    hostname: "${COMPOSE_PROJECT_NAME}-host" # コンテナ名: プロジェクト名-host
+    build:
+      context: "./docker/ubuntu" # Dockerfileが格納されているディレクトリパス
+    image: "my-${COMPOSE_PROJECT_NAME}" # Dockerfileで生成されるイメージ名: my-プロジェクト名
+    tty: true # TTY有効
+    volumes:
+      - "./work:/mnt/work" # バインドマウント（ホストマシンの work フォルダとコンテナ内の/mnt/workフォルダを同期）
